@@ -22,19 +22,13 @@ import java.util.Objects;
                 @Index(columnList = "createdBy")
         }
 )
-@EntityListeners(AuditingEntityListener.class)
 @Entity
-public class ArticleComment {
+public class ArticleComment extends AuditingFields{
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
   @Setter @ManyToOne(optional = false) private Article article;
   @Setter @Column(nullable = false, length = 500) private String content;
-
-  @CreatedDate private @Column(nullable = false) LocalDateTime createdAt;
-  @CreatedBy private @Column(nullable = false, length = 100)String createdBy;
-  @LastModifiedDate private @Column(nullable = false) LocalDateTime modifieddAt;
-  @LastModifiedBy private @Column(nullable = false, length = 100)String modifiedBy;
 
   protected ArticleComment() {}
 
